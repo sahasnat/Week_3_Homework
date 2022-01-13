@@ -1,70 +1,3 @@
-// var charset_initial = "";
-// Generator Functions - http://www.net-comber.com/charset.html
-// var charset_Lowercase = function getRandomLower() {
-//   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-// };
-// var charset_Uppercase = function getRandomUpper() {
-// 	return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-// };
-// var charset_Number = function getRandomNumber() {
-// 	return +String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-// };
-// var charset_Special = function getRandomSymbol() {
-// 	const symbols = '!@#$%^&*(){}[]=<>/,.'
-// 	return symbols[Math.floor(Math.random() * symbols.length)];
-// };
-
-// console.log(charset_Lowercase());
-// // Assignment Code
-// var generateBtn = document.querySelector("#generate");
-
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
-
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
-
-//   passwordText.value = password;
-
-// }
-
-// function generatePassword() {
-//   var charset_final = charset_initial;;
-//   var password_length = prompt("Enter Your password length between 8 to 128");
-
-
-//   var add_Lowercase = confirm ("Would you like to add Lowercase Character?");
-
-//   var add_Uppercase = confirm("Would you like to add Uppercase Character?");
-
-//   var add_Number = confirm("Would you like to add Number?");
-
-//   var add_Special = confirm("Would you like to add Special Character?");
-
-//   if (add_Lowercase == true && add_Uppercase == true && add_Number == true && add_Special == true) {
-//    var charset_final = charset_Lowercase() + charset_Uppercase() + charset_Number() + charset_Special();
-//   }
-
-//   if (add_Lowercase == true && add_Uppercase == true && add_Number == true && add_Special == false) {
-//     var charset_final = charset_Lowercase() + charset_Uppercase() + charset_Number();
-//   }
-//   if (add_Lowercase == true && add_Uppercase == true && add_Number == false && add_Special == false) {
-//     var charset_final = charset_Lowercase() + charset_Uppercase();
-//   }
-//   if (add_Lowercase == true && add_Uppercase == false && add_Number == false && add_Special == false) {
-//     var charset_final = charset_Lowercase();
-//   }
-//   if (add_Lowercase == false && add_Uppercase == false && add_Number == false && add_Special == false) {
-//     var charset_final = charset_initial;
-//   }
-//   return charset_final;
-
-// }
-
-
-
 // Array of Lowercase Characters
 var charset_Lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
@@ -121,8 +54,9 @@ function generatePassword() {
   // password array to be populated with all characters
     password = [];
 
-  // create a new array to join first set of values
-    var charset_Initial = charset_Lowercase;
+  // create a new array to join set of values
+    var charset_Initial = [];
+
 
   // set local variables with values from the passwordSelections function
   promptOrConfirmValues = passwordSelections();
@@ -132,6 +66,61 @@ function generatePassword() {
   add_Number = promptOrConfirmValues[3];
   add_Special = promptOrConfirmValues[4];
 
+  // Add values into new array based on selections
+
+   if (add_Lowercase == true && add_Uppercase == true && add_Number == true && add_Special == true) {
+    var charset_Initial = charset_Lowercase + charset_Uppercase + charset_Number + charset_Special;
+   }
+ 
+   if (add_Lowercase == true && add_Uppercase == true && add_Number == true && add_Special == false) {
+     var charset_Initial = charset_Lowercase + charset_Uppercase + charset_Number;
+   }
+   if (add_Lowercase == true && add_Uppercase == true && add_Number == false && add_Special == false) {
+     var charset_Initial = charset_Lowercase + charset_Uppercase;
+   }
+   if (add_Lowercase == true && add_Uppercase == false && add_Number == false && add_Special == false) {
+     var charset_Initial = charset_Lowercase;
+   }
+   if (add_Lowercase == false && add_Uppercase == true && add_Number == true && add_Special == true) {
+    var charset_Initial = charset_Uppercase + charset_Number + charset_Special;
+   }
+   if (add_Lowercase == true && add_Uppercase == false && add_Number == true && add_Special == true) {
+    var charset_Initial = charset_Lowercase + charset_Number + charset_Special;
+   }
+   if (add_Lowercase == true && add_Uppercase == true && add_Number == false && add_Special == true) {
+    var charset_Initial = charset_Lowercase + charset_Uppercase + charset_Special;
+   }
+   if (add_Lowercase == false && add_Uppercase == false && add_Number == true && add_Special == true) {
+    var charset_Initial = charset_Number + charset_Special;
+   }
+   if (add_Lowercase == false && add_Uppercase == false && add_Number == false && add_Special == true) {
+    var charset_Initial = charset_Special;
+   }
+   if (add_Lowercase == false && add_Uppercase == true && add_Number == false && add_Special == false) {
+    var charset_Initial = charset_Uppercase;
+   }
+   if (add_Lowercase == false && add_Uppercase == false && add_Number == true && add_Special == false) {
+    var charset_Initial = charset_Number;
+   }
+   if (add_Lowercase == false && add_Uppercase == false && add_Number == false && add_Special == true) {
+    var charset_Initial = charset_Special;
+   }
+   if (add_Lowercase == false && add_Uppercase == true && add_Number == true && add_Special == false) {
+    var charset_Initial = charset_Uppercase + charset_Number;
+   }
+   if (add_Lowercase == false && add_Uppercase == true && add_Number == false && add_Special == true) {
+    var charset_Initial = charset_Uppercase + add_Special;
+   }
+   if (add_Lowercase == true && add_Uppercase == false && add_Number == true && add_Special == false) {
+    var charset_Initial = charset_Lowercase + charset_Number;
+   }
+   if (add_Lowercase == true && add_Uppercase == false && add_Number == false && add_Special == true) {
+    var charset_Initial = charset_Lowercase + add_Special;
+   }
+  // if users don not use any selection exit without generating password and asking to add selectin next time
+   if (add_Lowercase == false && add_Uppercase == false && add_Number == false && add_Special == false) {
+     prompt("you must select at least one character type");
+   }
 // check that the password is between 8 and 128 characters
 
 if (password_length <8 || password_length >128) {
@@ -149,6 +138,7 @@ if (add_Lowercase == true){
     password[i] = password[i]; 
   }
 }
+
 // check for upper case
 if (add_Uppercase == true) {
   for (var i =0; i<Math.floor(password.length/4); i++) { 
